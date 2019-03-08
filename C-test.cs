@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,21 +9,6 @@ public struct Point
 }
 
 public class Hello{
-    // 順列列挙用の関数
-    public static IEnumerable<T[]> Enumerate<T>(IEnumerable<T> items) {
-        if (items.Count() == 1) {
-            yield return new T[] { items.First() };
-            yield break;
-        }
-        foreach (var item in items) {
-            var leftside = new T[] { item };
-            var unused = items.Except(leftside);
-            foreach (var rightside in Enumerate(unused)) {
-                yield return leftside.Concat(rightside).ToArray();
-            }
-        }
-    }
-
     public static void Main(){
         // 自分の得意な言語で
         // Let's チャレンジ！！
@@ -34,23 +18,44 @@ public class Hello{
         int tresure_count=int.Parse(line);
 
         // 位置と原点からの距離のリスト
-        //var pointTable=new SortedDictionary<double, Point>();
-        // 位置のリスト
-        var pointList=new List<Point>();
-        //IEnumerable<Point> pointList;
-        //pointList.AddRange(new Point(0,0));
-        pointList.Add(new Point(0,0));
-        //Console.WriteLine(pointList[0].x);
+        var pointTable=new SortedDictionary<double, Point>();
 
-        // 位置リストを完成させる
+        // お宝リスト
         for (int tresure_num=0; tresure_num<tresure_count; tresure_num++){
             string line_next=System.Console.ReadLine();
             string[] tresure_posi=line_next.Split(' ');
-            pointList.Add(new Point(int.Parse(tresure_posi[0]), int.Parse(tresure_posi[1])));
+            Point tresure_point=new Point(int.Parse(tresure_posi[0]), int.Parse(tresure_posi[1]));
+            double distance=Math.Sqrt(Math.Pow(tresure_point.x, 2)+Math.Pow(tresure_point.y, 2));
+            pointTable.Add(distance, tresure_point);
         }
 
-        // N個の宝物の位置の順序の総数はN!(N*N-1...*2*1)
-        Enumerate(pointList);
+        // 次の原点
+        Point nextPoint=new Point(0, 0);
+        // 原点からの移動距離
+        KeyValuePair<double, Point> firstPair=pointTable.First();
+        Console.WriteLine(firstPair.Value.x+" "+firstPair.Value.y);
+        nextPoint.x=firstPair.Value.x;
+        nextPoint.y=firstPair.Value.y;
+        pointTable.Remove(firstPair.Key);
 
+        for (int tresure_num=1; tresure_num<tresure_count; tresure_num++) {
+            // 毎回nextPointTableを作成
+            var nextPointTable=new SortedDictionary<double, Point>();
+            // 原点からの距離を再計算
+            foreach(KeyValuePair<double, Point> pair in pointTable) {
+                int diffX=pair.Value.x-nextPoint.x;
+                int diffY=pair.Value.y-nextPoint.y;
+                nextPointTable.Add(Math.Sqrt(Math.Pow(diffX, 2)+Math.Pow(diffY, 2)), pair.Value);
+            }
+            // 次に近い点を表示
+            KeyValuePair<double, Point> nextPair=nextPointTable.First();
+            Console.WriteLine(nextPair.Value.x+" "+nextPair.Value.y);
+            nextPoint.x=nextPair.Value.x;
+            nextPoint.y=nextPair.Value.y;
+            // 最初に見つけた同じValueのKeyを削除
+            var item=pointTable.First(kvp=>kvp.Value.x==nextPair.Value.x);
+            pointTable.Remove(item.Key);
+            nextPointTable.Clear();
+        }
     }
 }
