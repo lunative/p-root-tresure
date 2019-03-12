@@ -9,3 +9,14 @@
 /Users/center/Documents/csprogram/Example/obj/Debug/netcoreapp2.2/Example01.AssemblyInfo.cs
 /Users/center/Documents/csprogram/Example/obj/Debug/netcoreapp2.2/Example01.dll
 /Users/center/Documents/csprogram/Example/obj/Debug/netcoreapp2.2/Example01.pdb
+/Users/center/Documents/CSharpTest/Example/obj/Debug/netcoreapp2.2/Example01.csprojAssemblyReference.cache
+/Users/center/Documents/CSharpTest/Example/obj/Debug/netcoreapp2.2/Example01.csproj.CoreCompileInputs.cache
+/Users/center/Documents/CSharpTest/Example/obj/Debug/netcoreapp2.2/Example01.AssemblyInfoInputs.cache
+/Users/center/Documents/CSharpTest/Example/obj/Debug/netcoreapp2.2/Example01.AssemblyInfo.cs
+/Users/center/Documents/CSharpTest/Example/obj/Debug/netcoreapp2.2/Example01.dll
+/Users/center/Documents/CSharpTest/Example/obj/Debug/netcoreapp2.2/Example01.pdb
+/Users/center/Documents/CSharpTest/Example/bin/Debug/netcoreapp2.2/Example01.deps.json
+/Users/center/Documents/CSharpTest/Example/bin/Debug/netcoreapp2.2/Example01.runtimeconfig.json
+/Users/center/Documents/CSharpTest/Example/bin/Debug/netcoreapp2.2/Example01.runtimeconfig.dev.json
+/Users/center/Documents/CSharpTest/Example/bin/Debug/netcoreapp2.2/Example01.dll
+/Users/center/Documents/CSharpTest/Example/bin/Debug/netcoreapp2.2/Example01.pdb
